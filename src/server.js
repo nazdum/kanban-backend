@@ -9,6 +9,7 @@ const morgan = require('morgan');
  * Import routes 
 */
 const TaskRouter = require('./routes/task.routes')
+const UserRouter = require('./routes/user.routes')
 
 
 /**
@@ -27,6 +28,7 @@ app.use(morgan('dev'))
  * Routes 
 */
 app.use("/task", TaskRouter)
+app.use("/user" , UserRouter);
 
 /**
  * Server  
