@@ -38,7 +38,7 @@ const server = app.listen(
     app.get('port'),
     () => {
         console.log(`Server on port: ${app.get('port')}`)
-        const db = require('./src/database/database')
+        const db = require('./src/api/database/database')
     }
 )
 
