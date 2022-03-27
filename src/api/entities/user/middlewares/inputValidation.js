@@ -1,5 +1,3 @@
-const res = require("express/lib/response");
-
 const inputValidation = (request, response, next) => {
 
     const { username, password } = request.body;
