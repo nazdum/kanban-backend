@@ -21,10 +21,36 @@ const createTask = async (request, response) => {
 
 }
 
-const deleteTask = (request, response) => {
-    response.json({ "msg": "deleteTask" });
+
+const deleteTask = async (request, response) => {
+
+    const { noteID } = request.params
+    
+    try {
+        await Task.findByIdAndDelete(noteID.toString())
+        return response.status(200).json({ message: "task deleted successfully" })
+
+    } catch (error) {
+        return response.status(500).json({ error: "internal error" })
+    }
+
+}
+
+
+const updateTask = async (request, response) => {
+
+    const { noteID } = request.params
+
+    try {
+        const updatedTask = await Task.findByIdAndUpdate(noteID, request.body)
+        response.status(200).json({ message: "note updated" })
+
+    } catch (error) {
+        response.status(500).json({ error: "internal error" })
+    }
+
 }
 
 module.exports = {
-    createTask, deleteTask
+    createTask, deleteTask, updateTask
 }
