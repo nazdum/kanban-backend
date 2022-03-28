@@ -25,10 +25,21 @@ const createTask = async (request, response) => {
 const deleteTask = async (request, response) => {
 
     const { noteID } = request.params
-    
+    const { authorID } = request.body
+
+
     try {
+
         await Task.findByIdAndDelete(noteID.toString())
+
+        const user = await User.findById(authorID)
+        user.tasks = user.tasks.filter(task => task.toString() !== noteID.toString())
+
+        user.save()
+
         return response.status(200).json({ message: "task deleted successfully" })
+
+
 
     } catch (error) {
         return response.status(500).json({ error: "internal error" })
