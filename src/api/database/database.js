@@ -1,6 +1,6 @@
 const mongoose  = require("mongoose");
 
-const {DB_USERNAME , DB_PASSWORD , DB_NAME, URI} = require('./database.config')
+const URI = require('./database.config')
 
 const startConnection = async () => {
     
@@ -16,6 +16,4 @@ const startConnection = async () => {
 
 }
 
-startConnection()
-
-module.exports = mongoose
+module.exports = {mongoose , startConnection}
